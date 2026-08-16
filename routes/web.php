@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\InstructorController;
 // use App\Http\Controllers\BatchController;
 
 Route::get('/', function () {
@@ -46,6 +47,8 @@ Route::prefix('/talent')->group(function() {
 Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
 Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
+Route::get('/categories/{id}/eidt', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::post('/categories/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
 Route::post('/categories/delete/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
 
 Route::get('/batches', [BatchController::class, 'index'])
@@ -60,4 +63,4 @@ Route::post('/batches', [BatchController::class, 'store'])
 Route::delete('/batches/{batch}', [BatchController::class, 'destroy'])
     ->name('batches.destroy');
 
-
+Route::resource('instructors', InstructorController::class);
